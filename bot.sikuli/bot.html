@@ -1,0 +1,135 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>bot.sikuli</h2> <a href="bot.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="skw">click</span>(Region(<span class="dig">83</span>,<span class="dig">565</span>,<span class="dig">121</span>,<span class="dig">121</span>)) <span class="cmt">#focus the window</span>
+Settings.MoveMouseDelay = <span class="dig">.1</span>
+<span class="kw">while</span> True:
+    <span class="cmt">#Play cards
+</span>    x = <span class="dig">320</span>
+    y = <span class="dig">730</span>
+    w = <span class="dig">44</span>
+    h = <span class="dig">86</span>
+    play = Region(<span class="dig">485</span>,<span class="dig">400</span>,<span class="dig">69</span>,<span class="dig">103</span>)
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, <span class="dig">10</span>):
+        r = Region(x, y, w, h)
+
+        <span class="skw">dragDrop</span>(r, play)
+        x += <span class="dig">60</span>
+
+    <span class="skw">click</span>(Region(<span class="dig">613</span>,<span class="dig">583</span>,<span class="dig">49</span>,<span class="dig">51</span>))
+
+    x = <span class="dig">220</span>
+    y = <span class="dig">396</span>
+    w = <span class="dig">91</span>
+    h = <span class="dig">106</span>
+    <span class="cmt">#attack
+</span>    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, <span class="dig">10</span>):
+        r = Region(x, y, w, h)
+        <span class="skw">click</span>(r)
+        <span class="skw">click</span>(Region(<span class="dig">457</span>,<span class="dig">118</span>,<span class="dig">119</span>,<span class="dig">125</span>))
+        x2 = <span class="dig">220</span>
+        y2 = <span class="dig">280</span>
+        w2 = <span class="dig">91</span>
+        h2 = <span class="dig">106</span>
+        <span class="kw">try</span>:
+            <span class="kw">if</span> exists(<img src="1411536305986.png" />):
+                region = <span class="skw">find</span>(<img src="1411536305986.png" />)
+                <span class="kw">if</span> region == None <span class="kw">or</span> region.x &gt; <span class="dig">385</span>:
+                    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, <span class="dig">10</span>):
+                        r2 = Region(x2, y2, w2, h2)
+                        <span class="skw">click</span>(r2)
+                        x2 += <span class="dig">60</span>
+                <span class="kw">else</span>:
+                    <span class="skw">click</span>(region)
+            <span class="kw">else</span>:
+                <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, <span class="dig">10</span>):
+                    r2 = Region(x2, y2, w2, h2)
+                    <span class="skw">click</span>(r2)
+                    x2 += <span class="dig">60</span>
+        <span class="kw">except</span> FindFailed:
+            <span class="kw">print</span> <span class="str">"crap"</span>
+        x += <span class="dig">60</span>
+    <span class="cmt">#attack minions if there was a taunt
+</span>
+    <span class="skw">click</span>(Region(<span class="dig">884</span>,<span class="dig">365</span>,<span class="dig">77</span>,<span class="dig">26</span>))
+
+
+    <span class="kw">try</span>:
+        hover(Region(<span class="dig">83</span>,<span class="dig">591</span>,<span class="dig">84</span>,<span class="dig">69</span>)) <span class="cmt">#hover in lower left</span>
+        <span class="skw">wait</span>(<img src="1411531507104.png" />, <span class="dig">120</span>)
+        <span class="kw">print</span>(<span class="str">"MY TURN!"</span>)
+
+    <span class="kw">except</span> FindFailed:
+        <span class="kw">print</span> <span class="str">"uh oh, turn didn't finish in 120 seconds"</span>
+</pre>
+</body>
+</html>
